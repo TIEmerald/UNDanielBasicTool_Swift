@@ -27,12 +27,6 @@
 		1BE83F05D2C9B417E2BA301860E9EDB2 /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB646F5C3AD648D54BA7807757A438B3 /* NSBundle+CurrentTestBundle.swift */; };
 		1C50F54510D5C2B2AD84D7B74A6EDEBB /* BeGreaterThanOrEqualTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DF73EC8589FCD2BADF5534F8DD5D57 /* BeGreaterThanOrEqualTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1C7CA1FAFBF8B865596C739FEA39CDEE /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DF2E04EDA323EE4B83913F112D1497 /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		2006EEC21EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
-		2006EEC31EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
-		2006EEC41EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
-		2006EEC51EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
-		2006EEC61EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
-		2006EEC71EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
 		2006EEC81EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EEC11EE2E975005F5FA7 /* UNDanielBasicTool.swift */; };
 		22C1DE74D494C10BBE727F239A68447D /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93362A5E44184053D77B56304DD0F370 /* ThrowError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		230A004E016308FA6C00DAF33E7089BB /* NimbleSnapshotsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151F48AD847BF31ED71E00140349933 /* NimbleSnapshotsConfiguration.swift */; };
@@ -1152,7 +1146,6 @@
 				B9BD565DAB07F8E2288A960A1D3EFAC1 /* MatcherFunc.swift in Sources */,
 				23E2E1E02FE79EE1E1688CBBAA777297 /* MatcherProtocols.swift in Sources */,
 				CE4CEF6328E255B380E2B2692B351CF8 /* MatchError.swift in Sources */,
-				2006EEC31EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */,
 				9E95D6E15DBE9B0FC92AAF60D42D1464 /* Nimble-dummy.m in Sources */,
 				F9D61EB5EEB799105913685722FF4C9C /* NimbleEnvironment.swift in Sources */,
 				E5CCEF0B83F8272D10671C01AAE4FFA0 /* NimbleXCTestHandler.swift in Sources */,
@@ -1190,7 +1183,6 @@
 				607308F476214497BFDE452056C2D0B7 /* NSString+QCKSelectorName.m in Sources */,
 				99D78691DDFCC91D33EF911FCFABFE46 /* QCKDSL.m in Sources */,
 				BF69AA6FF03B0D3789E27548B8398D35 /* Quick-dummy.m in Sources */,
-				2006EEC71EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */,
 				B2C0DCF4342E71A8EDC6C48E197F6698 /* QuickConfiguration.m in Sources */,
 				409FAF576DBF8C84A9B6E18637ACE6E6 /* QuickSelectedTestSuiteBuilder.swift in Sources */,
 				4647B4889669D5F1E0A7A1C2ECFDFD68 /* QuickSpec.m in Sources */,
@@ -1207,7 +1199,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2006EEC51EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */,
 				0DD8FB44CF9D06118E7E73CC094BA1C0 /* Pods-UNDanielBasicTool_Swift_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1216,7 +1207,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2006EEC61EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */,
 				E53C230672D85BDA8FAA9B98F7B22D51 /* Pods-UNDanielBasicTool_Swift_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1225,7 +1215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2006EEC41EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */,
 				3509162C93C42B9929597FCA92D35790 /* HaveValidSnapshot.swift in Sources */,
 				65E8CBAA7CB6D1DE33599E488671A80B /* Nimble-Snapshots-dummy.m in Sources */,
 				230A004E016308FA6C00DAF33E7089BB /* NimbleSnapshotsConfiguration.swift in Sources */,
@@ -1237,7 +1226,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2006EEC21EE2E975005F5FA7 /* UNDanielBasicTool.swift in Sources */,
 				506D761F91EC3583789A837C559972FE /* FBSnapshotTestCase-dummy.m in Sources */,
 				BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */,
 				DB7A106243AC974FC7EBEB00B506C786 /* FBSnapshotTestCasePlatform.m in Sources */,

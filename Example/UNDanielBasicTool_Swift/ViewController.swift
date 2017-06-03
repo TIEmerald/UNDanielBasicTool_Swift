@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import UNDanielBasicTool_Swift
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib
+        UNDanielBasicTool.SharedInstance.isDevelopMode = true
+        UNDanielBasicTool.displayMessageInConsole("Some thing")
     }
 
     override func didReceiveMemoryWarning() {
