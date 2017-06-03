@@ -22,18 +22,52 @@ public class UNDanielBasicTool: NSObject {
     }
 
     
-    public static func displayMessageInConsole(_ items: Any..., functionName: String = #function, fileName : String = #file, lineNumber: Int = #line, separator: String = "", terminator: String = "\n") {
+    public static func log<T>(_ object: T, _ level: Stuff.logLevel = .debug, functionName: String = #function, fileName : String = #file, lineNumber: Int = #line) {
         if UNDanielBasicTool.SharedInstance.isDevelopMode {
-            // Reference: https://stackoverflow.com/questions/26913799/remove-println-for-release-version-ios-swift
-            var idx = items.startIndex
-            let endIdx = items.endIndex
-            
-            let className = (fileName as NSString).lastPathComponent
-            Swift.print("<\(className)> \(functionName) [\(lineNumber)] :")
-            repeat {
-                Swift.print(items[idx], separator: separator, terminator: idx == (endIdx - 1) ? terminator : separator)
-                idx += 1
-            }while idx < endIdx
+            Stuff.print(object, level, filename: fileName, line: lineNumber, funcname: functionName)
+        }
+    }
+}
+
+// Reference: https://github.com/evermeer/Stuff#print
+public class Stuff {
+    
+    public enum logLevel: Int {
+        case info = 1
+        case debug = 2
+        case warn = 3
+        case error = 4
+        case fatal = 5
+        case none = 6
+        
+        public func description() -> String {
+            switch self {
+            case .info:
+                return "❓"
+            case .debug:
+                return "✳️"
+            case .warn:
+                return "⚠️"
+            case .error:
+                return "🚫"
+            case .fatal:
+                return "🆘"
+            case .none:
+                return ""
+            }
+        }
+    }
+    
+    public static var minimumLogLevel: logLevel = .info
+    
+    public static func print<T>(_ object: T, _ level: logLevel = .debug, filename: String = #file, line: Int = #line, funcname: String = #function) {
+        if level.rawValue >= Stuff.minimumLogLevel.rawValue {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss:SSS"
+            let process = ProcessInfo.processInfo
+            let threadId = "?"
+            let file = URL(string: filename)?.lastPathComponent ?? ""
+            Swift.print("\n\(level.description()) .\(level) *** \(dateFormatter.string(from: Foundation.Date())) *** \(process.processName) [\(process.processIdentifier):\(threadId)] <\(file)> \(funcname) [Line \(line)] : \r\t\(object)")
         }
     }
 }

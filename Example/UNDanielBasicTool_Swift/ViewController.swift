@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
         UNDanielBasicTool.SharedInstance.isDevelopMode = true
-        UNDanielBasicTool.displayMessageInConsole("Some thing")
+        UNDanielBasicTool.log("Some thing")
     }
 
     override func didReceiveMemoryWarning() {
