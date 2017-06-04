@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class UNDanielBasicTool: NSObject {
+public class UNDanielUtilsTool: NSObject {
     
     /// This is will contains all Basic Settings we might needed in this pod.
-    public static let SharedInstance = UNDanielBasicTool();
+    public static let SharedInstance = UNDanielUtilsTool();
     
     /// What will happened if you set this property to yes.
     ///     1. we will show Comment in consoles
@@ -23,7 +23,7 @@ public class UNDanielBasicTool: NSObject {
 
     
     public static func log<T>(_ object: T, _ level: Stuff.logLevel = .debug, functionName: String = #function, fileName : String = #file, lineNumber: Int = #line) {
-        if UNDanielBasicTool.SharedInstance.isDevelopMode {
+        if UNDanielUtilsTool.SharedInstance.isDevelopMode {
             Stuff.print(object, level, filename: fileName, line: lineNumber, funcname: functionName)
         }
     }

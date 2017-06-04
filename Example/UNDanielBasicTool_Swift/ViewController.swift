@@ -14,8 +14,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
-        UNDanielBasicTool.SharedInstance.isDevelopMode = true
-        UNDanielBasicTool.log("Some thing")
+        UNDanielUtilsTool.SharedInstance.isDevelopMode = true
+        
+        let usingRequst = UNDRegisterRequestModel.generateReqeustModel(withAPIMethod: "/user/register",
+                                                                       "newTestEmail6@test.co",
+                                                                       "abc")
+        UNDNetWorkAPITool.performPOST(usingRequst,
+                                      withSuccessHandler: { 
+                                        
+        }) { (error) in
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

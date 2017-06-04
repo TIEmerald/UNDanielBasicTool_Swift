@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "UNDanielBasicTool_Swift/Classes/**/*"
+  "source_files": "UNDanielBasicTool_Swift/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+      "~> 3.0"
+    ]
+  }
 }
