@@ -39,8 +39,6 @@ public class UNDNetWorkAPITool: NSObject {
     
     public static func performPOST(_ requestModel : UNDNetWorkAPIRequestModel, withSuccessHandler successHandler : @escaping () -> Void, andErrorHandler errorHandler : ((_ error : Error) -> Void)?){
         let manager = AFHTTPSessionManager()
-        //manager.requestSerializer = AFJSONRequestSerializer()
-        //manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
         manager.responseSerializer.acceptableContentTypes?.insert("text/html")
         manager.responseSerializer.acceptableContentTypes?.insert("text/plain")
         manager.post(requestModel.fullAPIURL,

@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'UNDanielBasicTool_Swift'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of UNDanielBasicTool_Swift.'
+  s.summary          = 'UNDanielBasicTool is a useful Tool contains a lot of functions.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+    This is a Basic Tool I used for different Swift App Developing.
                        DESC
 
-  s.homepage         = 'https://github.com/niyejunze.j@gmail.com/UNDanielBasicTool_Swift'
+  s.homepage         = 'https://github.com/TIEmerald/UNDanielBasicTool_Swift'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'niyejunze.j@gmail.com' => 'niyejunze.j@gmail.com' }
-  s.source           = { :git => 'https://github.com/niyejunze.j@gmail.com/UNDanielBasicTool_Swift.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/TIEmerald/UNDanielBasicTool_Swift.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'

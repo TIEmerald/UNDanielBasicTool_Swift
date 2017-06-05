@@ -32,7 +32,6 @@
 		1C7CA1FAFBF8B865596C739FEA39CDEE /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B6B8319AD742332A01BC16714912AB /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3AC86AC700FE7750841C12DD54D8AC /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2006EECC1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */; };
-		210D03623A5B18138E3E32E5038EA4D5 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC369345A0ABA50069275E65E9A574E /* ReplaceMe.swift */; };
 		22C1DE74D494C10BBE727F239A68447D /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1304BF246FBB8D7A6E4B5AAD003349BF /* ThrowError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		230A004E016308FA6C00DAF33E7089BB /* NimbleSnapshotsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE3DE02ACF411EEABB16A3DDF33BD12 /* NimbleSnapshotsConfiguration.swift */; };
 		234BFC45ACAC4A8FB945EA17B6A74B0B /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8106DDD2F0AA71655DDE4A863428C047 /* SourceLocation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -399,7 +398,6 @@
 		85D9693AEE75E4F6A1E0FDA59E2A9262 /* NSBundle+CurrentTestBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBundle+CurrentTestBundle.swift"; path = "Sources/Quick/NSBundle+CurrentTestBundle.swift"; sourceTree = "<group>"; };
 		86DCC50B1BCC718B90EE8290F5FC946B /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
 		894E32E56823B9E2CF180B3E56678BBD /* Nimble.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Nimble.h; path = Sources/Nimble/Nimble.h; sourceTree = "<group>"; };
-		8AC369345A0ABA50069275E65E9A574E /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		8B2B119EE3AE86BE3B37A4F9BA4B7DD8 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		8B94EF6D64CD99F7F9357D2BE08497CA /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFB664C5F9298990CA40DFAB9FB6FA6 /* NSString+QCKSelectorName.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+QCKSelectorName.h"; path = "Sources/QuickObjectiveC/NSString+QCKSelectorName.h"; sourceTree = "<group>"; };
@@ -925,7 +923,6 @@
 		A02D10DC6E29E9F172FFAC177179558C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8AC369345A0ABA50069275E65E9A574E /* ReplaceMe.swift */,
 				BCA2C519098E14E6314DA6A684804BD6 /* UNDanielUtilsTool.swift */,
 				2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */,
 			);
@@ -1484,7 +1481,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				210D03623A5B18138E3E32E5038EA4D5 /* ReplaceMe.swift in Sources */,
 				0E6815DD599670C8D9E77C3DD0EE5A95 /* UNDanielUtilsTool.swift in Sources */,
 				738E1E04F71DC96D3F070FF048EBD90E /* UNDanielBasicTool_Swift-dummy.m in Sources */,
 				2006EECC1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift in Sources */,
