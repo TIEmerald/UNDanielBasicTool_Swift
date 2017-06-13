@@ -48,6 +48,11 @@ open class UNDNetWorkAPIRequestModel: NSObject {
     public init(apiMethodName : String) {
         self.apiMethodName = apiMethodName
     }
+    
+    // MARK: - General Methods
+    public func performPOST(withSuccessHandler successHandler : @escaping (Any?) -> Void, andErrorHandler errorHandler : ((_ error : Error) -> Void)?){
+        UNDNetWorkAPITool.performPOST(self, withSuccessHandler: successHandler, andErrorHandler: errorHandler);
+    }
 }
 
 public class UNDNetWorkAPITool: NSObject {
