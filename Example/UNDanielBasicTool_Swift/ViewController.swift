@@ -9,18 +9,17 @@
 import UIKit
 import UNDanielBasicTool_Swift
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
         UNDanielUtilsTool.SharedInstance.isDevelopMode = true
         
-        let usingRequst = UNDRegisterRequestModel.generateReqeustModel(withAPIMethod: "/user/register",
-                                                                       "newTestEmail6@test.co",
+        let usingRequst = UNDRegisterRequestModel.generateReqeustModel(withEmail:"newTestEmail6@test.co",
                                                                        "abc")
         UNDNetWorkAPITool.performPOST(usingRequst,
-                                      withSuccessHandler: { 
+                                      withSuccessHandler: { (returnObject) in
                                         
         }) { (error) in
             
@@ -31,6 +30,47 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    /// Mark: IBAction
+    @IBAction func loginButtonTaped(_ sender: UIButton) {
+        let usingRequst = UNDLoginRequestModel.generateReqeustModel(withEmail:"newTestEmail6@test.co",
+                                                                       "abc")
+        UNDNetWorkAPITool.performPOST(usingRequst,
+                                      withSuccessHandler: { (returnObject) in
+                                        let returnDictionary = returnObject as! Dictionary<String, Any>
+                                        if let accessToke = returnDictionary["AccessToken"]{
+                                            let defaults = UserDefaults.standard
+                                            defaults.set(accessToke, forKey: "AccessToken")
+                                        }
+        }) { (error) in
+            
+        }
+    }
+    
+    @IBAction func uploadImageFromLibraryToServer(_ sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker,
+                animated: true,
+                completion: nil);
+    }
+    
+    /// Mark: Delegates
+    /// Mark: UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let seletedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let usingRequest = UNDUploadStreemRequestModel.generateReqeustModel(withImage: seletedImage)
+            UNDNetWorkAPITool.performPOST(usingRequest,
+                                          withSuccessHandler: { (returenObject) in
+                                            
+            },
+                                          andErrorHandler: { (error) in
+                                            
+            })
+        }
+    }
 }
 
