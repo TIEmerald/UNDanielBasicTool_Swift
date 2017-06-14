@@ -18,9 +18,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let usingRequst = UNDRegisterRequestModel.generateReqeustModel(withEmail:"newTestEmail6@test.co",
                                                                        "abc")
-        UNDNetWorkAPITool.performPOST(usingRequst,
-                                      withSuccessHandler: { (returnObject) in
-                                        
+        UNDNetWorkAPITool.performHTTPPOST(usingRequst,
+                                          withSuccessHandler: { (returnObject) in
+                                            
         }) { (error) in
             
         }
@@ -36,13 +36,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func loginButtonTaped(_ sender: UIButton) {
         let usingRequst = UNDLoginRequestModel.generateReqeustModel(withEmail:"newTestEmail6@test.co",
                                                                        "abc")
-        UNDNetWorkAPITool.performPOST(usingRequst,
-                                      withSuccessHandler: { (returnObject) in
-                                        let returnDictionary = returnObject as! Dictionary<String, Any>
-                                        if let accessToke = returnDictionary["AccessToken"]{
-                                            let defaults = UserDefaults.standard
-                                            defaults.set(accessToke, forKey: "AccessToken")
-                                        }
+        UNDNetWorkAPITool.performHTTPPOST(usingRequst,
+                                          withSuccessHandler: { (returnObject) in
+                                            let returnDictionary = returnObject as! Dictionary<String, Any>
+                                            if let accessToke = returnDictionary["AccessToken"]{
+                                                let defaults = UserDefaults.standard
+                                                defaults.set(accessToke, forKey: "AccessToken")
+                                            }
         }) { (error) in
             
         }
@@ -63,12 +63,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         picker.dismiss(animated: true, completion: nil)
         if let seletedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let usingRequest = UNDUploadStreemRequestModel.generateReqeustModel(withImage: seletedImage)
-            UNDNetWorkAPITool.performPOST(usingRequest,
-                                          withSuccessHandler: { (returenObject) in
-                                            
-            },
-                                          andErrorHandler: { (error) in
-                                            
+            usingRequest.performPOST(withSuccessHandler: { (result) in
+                
+            }, andErrorHandler: { (error) in
+                
             })
         }
     }

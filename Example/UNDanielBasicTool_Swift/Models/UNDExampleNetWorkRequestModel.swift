@@ -87,12 +87,22 @@ class UNDUploadStreemRequestModel :UNDExampleNetWorkRequestModel {
             if let unwrapImage = self.uploadingImage {
                 if let imageData = UIImagePNGRepresentation(unwrapImage) {
                     formData.appendPart(withFileData: imageData,
-                                        name: "file",
+                                        name: "imageStream",
                                         fileName: "filename.jpg",
                                         mimeType: "image/png")
                 }
             }
         }
+    }
+    
+    
+    override var parameter : Any?{
+//        if let unwrapImage = self.uploadingImage {
+//            if let imageData = UIImagePNGRepresentation(unwrapImage) {
+//                return  ["imageStream" : imageData]
+//            }
+//        }
+        return nil
     }
     
     override var contentType : String{
@@ -103,9 +113,16 @@ class UNDUploadStreemRequestModel :UNDExampleNetWorkRequestModel {
         return "\(super.fullAPIURL)/\(accessToken)"
     }
     
+    override func updateBeforePost(withMutableRequest request: NSMutableURLRequest) {
+        if let unwrapImage = self.uploadingImage {
+            if let imageData = UIImagePNGRepresentation(unwrapImage) {
+                request.httpBody = imageData
+            }
+        }
+    }
     
     static public func generateReqeustModel(withImage image : UIImage?) -> UNDUploadStreemRequestModel {
-        let returnRequestModel = UNDUploadStreemRequestModel(apiMethodName: "/file/uploadstream")
+        let returnRequestModel = UNDUploadStreemRequestModel(apiMethodName: "/file/upload")
         returnRequestModel.uploadingImage = image
         return returnRequestModel
     }
