@@ -32,6 +32,7 @@
 		1C7CA1FAFBF8B865596C739FEA39CDEE /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B6B8319AD742332A01BC16714912AB /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3AC86AC700FE7750841C12DD54D8AC /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2006EECC1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */; };
+		2093702D1EF2B04100572956 /* UNDBaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209370251EF2B04100572956 /* UNDBaseTextField.swift */; };
 		22C1DE74D494C10BBE727F239A68447D /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1304BF246FBB8D7A6E4B5AAD003349BF /* ThrowError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		230A004E016308FA6C00DAF33E7089BB /* NimbleSnapshotsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE3DE02ACF411EEABB16A3DDF33BD12 /* NimbleSnapshotsConfiguration.swift */; };
 		234BFC45ACAC4A8FB945EA17B6A74B0B /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8106DDD2F0AA71655DDE4A863428C047 /* SourceLocation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -299,6 +300,7 @@
 		1EF0769E4787A465010CD5186479CAE7 /* Stringers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stringers.swift; path = Sources/Nimble/Utils/Stringers.swift; sourceTree = "<group>"; };
 		1F8425AABD79A4829BFA35C91F7F96E0 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNDNetWorkAPITool.swift; sourceTree = "<group>"; };
+		209370251EF2B04100572956 /* UNDBaseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNDBaseTextField.swift; sourceTree = "<group>"; };
 		21F01030FFC62D5C75B706A050E32474 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		2259ED58E32F2802CFD9FE49A04AF2B2 /* Nimble-Snapshots-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-Snapshots-umbrella.h"; sourceTree = "<group>"; };
 		24B92AEE91AFA1033D9AC857B5616137 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
@@ -659,6 +661,14 @@
 			path = "../Target Support Files/Quick";
 			sourceTree = "<group>";
 		};
+		209370241EF2AFF900572956 /* Base UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				209370251EF2B04100572956 /* UNDBaseTextField.swift */,
+			);
+			path = "Base UI Elements";
+			sourceTree = "<group>";
+		};
 		225A01DE125A4690A6DFEDC7E42265A6 /* Nimble-Snapshots */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,6 +933,7 @@
 		A02D10DC6E29E9F172FFAC177179558C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				209370241EF2AFF900572956 /* Base UI Elements */,
 				BCA2C519098E14E6314DA6A684804BD6 /* UNDanielUtilsTool.swift */,
 				2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */,
 			);
@@ -1317,6 +1328,17 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					CF671F7E57B92905F1CC91D036D6B4A7 = {
+						LastSwiftMigration = 0830;
+					};
+					F1E03E674CF5C8E11DE88C9F6B05A123 = {
+						LastSwiftMigration = 0830;
+					};
+					F7038BA2120F84A640855D32831258F2 = {
+						LastSwiftMigration = 0830;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1481,6 +1503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2093702D1EF2B04100572956 /* UNDBaseTextField.swift in Sources */,
 				0E6815DD599670C8D9E77C3DD0EE5A95 /* UNDanielUtilsTool.swift in Sources */,
 				738E1E04F71DC96D3F070FF048EBD90E /* UNDanielBasicTool_Swift-dummy.m in Sources */,
 				2006EECC1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift in Sources */,
@@ -1721,6 +1744,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B9F998471679D80575077329DBCD929 /* Pods-UNDanielBasicTool_Swift_Tests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1760,6 +1784,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C111F82B6F7DB7B408D178DEA001B44 /* AFNetworking.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1955,6 +1980,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6EB0C0CF4DBA4DDE3615CF9F7D6647B7 /* Pods-UNDanielBasicTool_Swift_Example.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2028,6 +2054,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C111F82B6F7DB7B408D178DEA001B44 /* AFNetworking.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2050,6 +2077,7 @@
 				PRODUCT_NAME = AFNetworking;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2130,6 +2158,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5538E22809A5B48E7E381B72B97BE02E /* Pods-UNDanielBasicTool_Swift_Tests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2202,6 +2231,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93A0C6049DA74CC0A26E4FCCDFD71E6E /* Pods-UNDanielBasicTool_Swift_Example.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

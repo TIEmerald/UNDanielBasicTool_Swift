@@ -9,7 +9,7 @@
 import UIKit
 import UNDanielBasicTool_Swift
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +69,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 
             })
         }
+    }
+    
+    /// Mark: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

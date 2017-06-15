@@ -35,13 +35,44 @@
                                     <action selector="uploadImageFromLibraryToServer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ewR-do-MLo"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RJm-k3-H48" customClass="UNDBaseTextField" customModule="UNDanielBasicTool_Swift">
+                                <rect key="frame" x="79" y="277" width="217" height="40"/>
+                                <color key="backgroundColor" red="0.62352941179999999" green="0.71372549019999998" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="QCM-3Z-rXY"/>
+                                    <constraint firstAttribute="width" constant="217" id="WXI-Ii-R5q"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="ChM-pX-vlb"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3lD-7o-WWe" customClass="UNDBaseTextField" customModule="UNDanielBasicTool_Swift">
+                                <rect key="frame" x="79" y="229" width="217" height="40"/>
+                                <color key="backgroundColor" red="0.62352941179999999" green="0.71372549019999998" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="CRH-Qp-WWL"/>
+                                    <outlet property="nextTextField" destination="RJm-k3-H48" id="0U0-Zu-pqz"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="RJm-k3-H48" firstAttribute="height" secondItem="3lD-7o-WWe" secondAttribute="height" id="3Uf-3W-rNB"/>
+                            <constraint firstItem="pGK-FU-7sH" firstAttribute="top" secondItem="RJm-k3-H48" secondAttribute="bottom" constant="1" id="6DD-Wx-XBp"/>
                             <constraint firstItem="pGK-FU-7sH" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="AKM-Dd-K4p"/>
                             <constraint firstItem="pGK-FU-7sH" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="UOU-oz-K2D"/>
                             <constraint firstItem="2vA-ij-spG" firstAttribute="top" secondItem="pGK-FU-7sH" secondAttribute="bottom" constant="8" id="cmL-Ll-XK4"/>
+                            <constraint firstItem="RJm-k3-H48" firstAttribute="trailing" secondItem="3lD-7o-WWe" secondAttribute="trailing" id="eZo-uW-B6a"/>
+                            <constraint firstItem="RJm-k3-H48" firstAttribute="top" secondItem="3lD-7o-WWe" secondAttribute="bottom" constant="8" id="iME-K1-MpO"/>
                             <constraint firstItem="2vA-ij-spG" firstAttribute="centerX" secondItem="pGK-FU-7sH" secondAttribute="centerX" id="nRo-Yy-j7L"/>
+                            <constraint firstItem="RJm-k3-H48" firstAttribute="centerX" secondItem="pGK-FU-7sH" secondAttribute="centerX" id="oEp-T5-X5k"/>
+                            <constraint firstItem="RJm-k3-H48" firstAttribute="leading" secondItem="3lD-7o-WWe" secondAttribute="leading" id="sm2-Ul-New"/>
                         </constraints>
                     </view>
                 </viewController>
