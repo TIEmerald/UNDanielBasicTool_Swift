@@ -33,6 +33,7 @@
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3AC86AC700FE7750841C12DD54D8AC /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2006EECC1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */; };
 		2093702D1EF2B04100572956 /* UNDBaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209370251EF2B04100572956 /* UNDBaseTextField.swift */; };
+		209370401EF2C18800572956 /* TableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209370381EF2C18800572956 /* TableViewCellExtension.swift */; };
 		22C1DE74D494C10BBE727F239A68447D /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1304BF246FBB8D7A6E4B5AAD003349BF /* ThrowError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		230A004E016308FA6C00DAF33E7089BB /* NimbleSnapshotsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE3DE02ACF411EEABB16A3DDF33BD12 /* NimbleSnapshotsConfiguration.swift */; };
 		234BFC45ACAC4A8FB945EA17B6A74B0B /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8106DDD2F0AA71655DDE4A863428C047 /* SourceLocation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -301,6 +302,7 @@
 		1F8425AABD79A4829BFA35C91F7F96E0 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		2006EECB1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNDNetWorkAPITool.swift; sourceTree = "<group>"; };
 		209370251EF2B04100572956 /* UNDBaseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNDBaseTextField.swift; sourceTree = "<group>"; };
+		209370381EF2C18800572956 /* TableViewCellExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellExtension.swift; sourceTree = "<group>"; };
 		21F01030FFC62D5C75B706A050E32474 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		2259ED58E32F2802CFD9FE49A04AF2B2 /* Nimble-Snapshots-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-Snapshots-umbrella.h"; sourceTree = "<group>"; };
 		24B92AEE91AFA1033D9AC857B5616137 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
@@ -664,9 +666,18 @@
 		209370241EF2AFF900572956 /* Base UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				2093702E1EF2BCDC00572956 /* Extensions */,
 				209370251EF2B04100572956 /* UNDBaseTextField.swift */,
 			);
 			path = "Base UI Elements";
+			sourceTree = "<group>";
+		};
+		2093702E1EF2BCDC00572956 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				209370381EF2C18800572956 /* TableViewCellExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		225A01DE125A4690A6DFEDC7E42265A6 /* Nimble-Snapshots */ = {
@@ -1507,6 +1518,7 @@
 				0E6815DD599670C8D9E77C3DD0EE5A95 /* UNDanielUtilsTool.swift in Sources */,
 				738E1E04F71DC96D3F070FF048EBD90E /* UNDanielBasicTool_Swift-dummy.m in Sources */,
 				2006EECC1EE38DA6005F5FA7 /* UNDNetWorkAPITool.swift in Sources */,
+				209370401EF2C18800572956 /* TableViewCellExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
