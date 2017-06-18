@@ -21,10 +21,25 @@ public class UNDanielUtilsTool: NSObject {
         isDevelopMode = false // By default we treat this as false...
     }
 
-    
+    /// MARK : - General Method
+    ////    MARK : Log Method
     public static func log<T>(_ object: T, _ level: Stuff.logLevel = .debug, functionName: String = #function, fileName : String = #file, lineNumber: Int = #line) {
         if UNDanielUtilsTool.SharedInstance.isDevelopMode {
             Stuff.print(object, level, filename: fileName, line: lineNumber, funcname: functionName)
+        }
+    }
+    
+    ////    MARK : Queue Related
+    public static func performBlockInMainQueu(_ block: (() -> Void)?){
+        if let unwrapedBlock = block {
+            if Thread.isMainThread {
+                unwrapedBlock()
+                return
+            }
+            
+            DispatchQueue.main.sync {
+                unwrapedBlock()
+            }
         }
     }
 }
