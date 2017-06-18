@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension UITableViewCell {
     
     /// Mark - Constant
@@ -17,20 +16,20 @@ extension UITableViewCell {
     
     /// Mark: - Override Methods
     /// Override this method with table view cell's nib name
-    open static var nibName : String {
+    open class var nibName : String {
         return ""
     }
     
-    open static var cellIdentifierName : String {
+    open class var cellIdentifierName : String {
         return ""
     }
     
-    open static var cellHeight : CGFloat{
+    open class var cellHeight : CGFloat{
         return 44.0
     }
     
     // Set Up Related
-    open func setupCell(basedOnModelDictionary modelDictionary : Dictionary){
+    open func setupCell(basedOnModelDictionary modelDictionary : Dictionary<String, Any>){
         
     }
     
@@ -41,18 +40,18 @@ extension UITableViewCell {
     /// Mark: - General Methods
     //// Call this method to register the cell into target table view
     public static func registerSelf(intoTableView tableview: UITableView?) -> Void{
-        tableview.register(type(of: self).nibName,
-                           forCellReuseIdentifier: type(of: self).cellIdentifierName)
+        tableview?.register(UINib.init(nibName: self.nibName, bundle: nil),
+                            forCellReuseIdentifier: self.cellIdentifierName)
     }
     
     /// Border Related
-    public func setupBorder(withWidth width: CGFloat, andColor borderColor: UIColor, isOutSide: BOOL){
+    public func setupBorder(withWidth width: CGFloat, andColor borderColor: UIColor, isOutSide: Bool){
         if isOutSide {
-            self.frame = CGRectInset(self.frame, -width, -width)
+            self.frame = self.frame.insetBy(dx: -width, dy: -width)
         }
         
         self.contentView.layer.borderWidth = width
-        self.contentView.layer.borderColor = borderColor.CGColor
+        self.contentView.layer.borderColor = borderColor.cgColor
     }
     
     public func removeBorder(){
