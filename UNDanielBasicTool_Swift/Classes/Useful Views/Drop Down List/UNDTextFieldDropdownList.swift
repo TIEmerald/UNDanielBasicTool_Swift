@@ -164,7 +164,7 @@ public class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITex
                     unwrapDelegate.targetTextFieldDidEndEditting(textField)
                 }
             }
-            self.resignFirstResponder()
+            _ = self.resignFirstResponder()
         }
     }
     

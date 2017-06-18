@@ -28,7 +28,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
             return _numberOfDisplayingCells
         }
         set(newValue){
-            self.resignFirstResponder()
+            _ = self.resignFirstResponder()
             _numberOfDisplayingCells = newValue
         }
     }
@@ -39,7 +39,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
             return _width
         }
         set(newValue){
-            self.resignFirstResponder()
+            _ = self.resignFirstResponder()
             _width = newValue
         }
     }
@@ -50,7 +50,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
             return _originPoint
         }
         set(newValue){
-            self.resignFirstResponder()
+            _ = self.resignFirstResponder()
             _originPoint = newValue
         }
     }
