@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UNDDropDownListDelegate : NSObjectProtocol {
+public protocol UNDDropDownListDelegate : NSObjectProtocol {
     
     func dropdownList(_ dropdownList: UNDDropDownListTableViewController, didSelectCellAtIndexPath indexPath: IndexPath) -> Void
     
@@ -17,7 +17,7 @@ protocol UNDDropDownListDelegate : NSObjectProtocol {
     func numberOfCellsInDropdownList(_ dropdownList: UNDDropDownListTableViewController) -> Int
 }
 
-class UNDDropDownListTableViewController: UITableViewController {
+open class UNDDropDownListTableViewController: UITableViewController {
     
     /// Mark : - Interfaces
     public weak var delegate : UNDDropDownListDelegate?
@@ -93,8 +93,8 @@ class UNDDropDownListTableViewController: UITableViewController {
     
     /// MARK : Private Properties
     private var hideSeperator : Bool = false
-    private var usingCellHeight : CGFloat = 0.0
-    private var usingCellIdentifier : String = ""
+    private var usingCellHeight : CGFloat = 44.0
+    private var usingCellIdentifier : String?
     private var _numberOfDisplayingCells : Int = 5
     private var _width : CGFloat = 0
     private var _originPoint : CGPoint = CGPoint(x: 0, y: 0)
@@ -118,6 +118,8 @@ class UNDDropDownListTableViewController: UITableViewController {
         self.view.frame = usingFrame
         self.view.superview?.bringSubview(toFront: self.view)
         
+        UNDanielUtilsTool.log("_____ Trying to show Dropdown List:\(self) in superView :\(String(describing: self.view.superview)) in Frame :\(usingFrame)")
+        
         UIView.animate(withDuration: self.dropdownListShowUpAndHideDuration) { 
             self.view.alpha = self.dropdownListAlpha
         }
@@ -136,6 +138,19 @@ class UNDDropDownListTableViewController: UITableViewController {
         }
     }
     
+    public func setUpDispalyingPositionWithView(_ view: UIView, andExtendWidth extendWidth: CGFloat ){
+        if let convertedRect = view.superview?.convert(view.frame,
+                                                       to: self.view.superview){
+            _originPoint = CGPoint(x: convertedRect.origin.x,
+                                   y: convertedRect.origin.y + convertedRect.size.height)
+            _width = convertedRect.size.width + extendWidth
+        } else {
+            _originPoint = CGPoint(x: 0,
+                                   y: 0)
+            _width = 0.0 + extendWidth
+        }
+    }
+    
     open override func resignFirstResponder() -> Bool {
         self.hideDropdownList()
         return super.resignFirstResponder()
@@ -143,7 +158,7 @@ class UNDDropDownListTableViewController: UITableViewController {
     
     /// MARK : - Privete Methods
     ///  MARK : - UI View Controller
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -153,11 +168,9 @@ class UNDDropDownListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.view.backgroundColor = UIColor.clear
-        // We will register UNDDDLSampleTableViewCell just in case
-        self.registerCell(UNDDDLSampleTableViewCell())
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.tableView.bounces = false
@@ -168,12 +181,12 @@ class UNDDropDownListTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override open func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if let unwrapDelegate = self.delegate {
             if unwrapDelegate.responds(to: Selector(("numberOfCellsInDropdownList:"))) {
@@ -183,13 +196,11 @@ class UNDDropDownListTableViewController: UITableViewController {
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: UNDDDLSampleTableViewCell.cellIdentifierName,
-                                                                   for: indexPath)
-        do{
-            cell = tableView.dequeueReusableCell(withIdentifier: self.usingCellIdentifier, for: indexPath)
-        } catch {
-            // No need to handle any thing.. If failed to get the using cell, we will us UNDDDLSampleTableViewCell.
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell : UITableViewCell = UNDDDLSampleTableViewCell()
+        if let unwrapedCellIdentifier = self.usingCellIdentifier {
+            cell = tableView.dequeueReusableCell(withIdentifier: unwrapedCellIdentifier,
+                                                 for: indexPath)
         }
         
         if let unwrapDelegate = self.delegate {
@@ -207,7 +218,7 @@ class UNDDropDownListTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let unwrapDelegate = self.delegate {
             if unwrapDelegate.responds(to: Selector(("dropdownList:didSelectCellAtIndexPath:"))) {
                 unwrapDelegate.dropdownList(self,

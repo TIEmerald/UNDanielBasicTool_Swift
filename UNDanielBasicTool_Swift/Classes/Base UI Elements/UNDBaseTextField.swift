@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UNDBaseTextField: UITextField {
+open class UNDBaseTextField: UITextField {
     
     /// Pading Related....
     // Set this value if you want to add padding to the textfield displayed text
@@ -21,7 +21,7 @@ class UNDBaseTextField: UITextField {
     @IBOutlet var nextTextField : UITextField?
 
     /// Mark : - UITextField
-    override func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
     }
 
@@ -29,25 +29,25 @@ class UNDBaseTextField: UITextField {
         super.init(frame: frame)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.origin.x + self.textPadding.left,
                       y: bounds.origin.y + self.textPadding.top,
                       width: bounds.size.width - self.textPadding.right - self.textPadding.left,
                       height: bounds.size.height - self.textPadding.top - self.textPadding.bottom)
     }
     
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.origin.x + self.editPadding.left,
                       y: bounds.origin.y + self.editPadding.top,
                       width: bounds.size.width - self.editPadding.right - self.editPadding.left,
                       height: bounds.size.height - self.editPadding.top - self.editPadding.bottom)
     }
     
-    override func resignFirstResponder() -> Bool {
+    override open func resignFirstResponder() -> Bool {
         if let wrapedTextField = nextTextField {
             wrapedTextField.becomeFirstResponder()
             return true

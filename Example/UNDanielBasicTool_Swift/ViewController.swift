@@ -11,6 +11,14 @@ import UNDanielBasicTool_Swift
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UNDDropDownListDelegate {
     
+    /// Properties : 
+    let dropDownListArray = ["Male", "Female"]
+    
+    let usingDropDownList = UNDDropDownListTableViewController()
+    
+    
+    
+    /// MARK : UI View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
@@ -24,6 +32,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }) { (error) in
             
         }
+        
+        // Drop Down List Related
+        usingDropDownList.delegate = self
+        self.view.addSubview(usingDropDownList.view)
+        usingDropDownList.view.alpha = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,17 +90,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        usingDropDownList.setUpDispalyingPositionWithView(textField, andExtendWidth: 0.0)
+        usingDropDownList.showUp()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        usingDropDownList.hideDropdownList()
+    }
+    
     /// Mark: UNDDropDownListDelegate
     func dropdownList(_ dropdownList: UNDDropDownListTableViewController, didSelectCellAtIndexPath indexPath: IndexPath) -> Void{
         
     }
     
     func dropdownList(_ dropdownList: UNDDropDownListTableViewController, dataAtIndexPath indexPath: IndexPath) -> Any{
-        
+        return dropDownListArray[indexPath.row]
     }
     
     func numberOfCellsInDropdownList(_ dropdownList: UNDDropDownListTableViewController) -> Int{
-        
+        return dropDownListArray.count
     }
 }
 

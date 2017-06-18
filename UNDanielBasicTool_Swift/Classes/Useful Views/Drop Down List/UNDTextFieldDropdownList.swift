@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UNDTextFieldDropdownListDelegate : UNDDropDownListDelegate {
+public protocol UNDTextFieldDropdownListDelegate : UNDDropDownListDelegate {
     // The Show Drop Down List block is used to show drop down list.... this is in case we need to show dropdown list in another queue (like after post call)
     func textField(_ textField: UITextField, willUpdateTextTo toText:String, andShowDropDownListBlock showDropDownList: ((Bool) -> Void)?)
     
@@ -34,7 +34,7 @@ extension UNDTextFieldDropdownListDelegate{
     }
 }
 
-class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldDelegate {
+public class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldDelegate {
 
     // MARK : - ENUM
     //      Will used to define the senetiy how open should we show up drop down list will user is typing
@@ -60,7 +60,7 @@ class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldD
     
     // MARK : - Interfaces
     weak var delegatForTextField : UNDTextFieldDropdownListDelegate?
-    override var delegate: UNDDropDownListDelegate?{
+    override public var delegate: UNDDropDownListDelegate?{
         didSet{
             delegatForTextField = delegate as? UNDTextFieldDropdownListDelegate
         }
@@ -106,7 +106,7 @@ class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldD
     
     /// MARK : - Private Methods
     ///  MARK : - Override Methods
-    override var dropdownListOriginPoint : CGPoint {
+    override public var dropdownListOriginPoint : CGPoint {
         if let unwrapedView = associatedView {
             if let convertedRect = unwrapedView.superview?.convert(unwrapedView.frame,
                                                                    to: self.view.superview){
@@ -118,14 +118,14 @@ class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldD
                        y: 0)
     }
     
-    override var dropdownListWidth : CGFloat{
+    override public var dropdownListWidth : CGFloat{
         if let unwrapedView = associatedView {
             return unwrapedView.frame.size.width + extendWidth
         }
         return extendWidth
     }
     
-    override func resignFirstResponder() -> Bool {
+    override public func resignFirstResponder() -> Bool {
         _currentAssociateTextField?.resignFirstResponder()
         _currentAssociateTextField = nil
         return super.resignFirstResponder()
@@ -133,7 +133,7 @@ class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldD
     
     /// MARK : - Delegate
     ///  MARK : - TextField Delegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         _currentAssociateTextField = textField
         
         var resultString = ""
@@ -152,12 +152,12 @@ class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldD
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         self.hideDropdownList()
         _currentAssociateTextField = textField
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if _currentAssociateTextField == textField{
             if let unwrapDelegate = self.delegate as! UNDTextFieldDropdownListDelegate?{
                 if unwrapDelegate.responds(to: Selector(("targetTextFieldDidEndEditting:"))) {
@@ -168,7 +168,7 @@ class UNDTextFieldDropdownList: UNDDropDownListTableViewController, UITextFieldD
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if _currentAssociateTextField == textField{
             if let unwrapDelegate = self.delegate as! UNDTextFieldDropdownListDelegate?{
                 if unwrapDelegate.responds(to: Selector(("targetTextFieldWillReturn:"))) {

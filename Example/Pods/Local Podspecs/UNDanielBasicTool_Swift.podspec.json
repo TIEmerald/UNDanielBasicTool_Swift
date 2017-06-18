@@ -1,9 +1,9 @@
 {
   "name": "UNDanielBasicTool_Swift",
-  "version": "0.1.0",
-  "summary": "A short description of UNDanielBasicTool_Swift.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/niyejunze.j@gmail.com/UNDanielBasicTool_Swift",
+  "version": "0.1.2",
+  "summary": "UNDanielBasicTool is a useful Tool contains a lot of functions.",
+  "description": "This is a Basic Tool I used for different Swift App Developing.",
+  "homepage": "https://github.com/TIEmerald/UNDanielBasicTool_Swift",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +12,8 @@
     "niyejunze.j@gmail.com": "niyejunze.j@gmail.com"
   },
   "source": {
-    "git": "https://github.com/niyejunze.j@gmail.com/UNDanielBasicTool_Swift.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/TIEmerald/UNDanielBasicTool_Swift.git",
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"

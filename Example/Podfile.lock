@@ -27,7 +27,7 @@ PODS:
     - Nimble
     - Quick
   - Quick (1.0.0)
-  - UNDanielBasicTool_Swift (0.1.0):
+  - UNDanielBasicTool_Swift (0.1.2):
     - AFNetworking (~> 3.0)
 
 DEPENDENCIES:
@@ -47,7 +47,7 @@ SPEC CHECKSUMS:
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
-  UNDanielBasicTool_Swift: a3c4f47ac2b0bcb2f0d6c6f72567320e05ea3264
+  UNDanielBasicTool_Swift: ea8f3a30fdaa5f7b3559d1dd9aad2d7d3b23b470
 
 PODFILE CHECKSUM: ac53adb370f16257b180969ccce41aec0784f09f
 
