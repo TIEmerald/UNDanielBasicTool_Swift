@@ -31,6 +31,7 @@
 		1C50F54510D5C2B2AD84D7B74A6EDEBB /* BeGreaterThanOrEqualTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A8ACE7498C994DB887DD14735BBF /* BeGreaterThanOrEqualTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1C7CA1FAFBF8B865596C739FEA39CDEE /* DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B6B8319AD742332A01BC16714912AB /* DSL.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3AC86AC700FE7750841C12DD54D8AC /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		205A69161EFD2BE8004C62A7 /* UNDRegexTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A69151EFD2BE8004C62A7 /* UNDRegexTool.swift */; };
 		209370551EF6890200572956 /* UNDUIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209370541EF6890200572956 /* UNDUIViewControllerExtension.swift */; };
 		22C1DE74D494C10BBE727F239A68447D /* ThrowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1304BF246FBB8D7A6E4B5AAD003349BF /* ThrowError.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		230A004E016308FA6C00DAF33E7089BB /* NimbleSnapshotsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE3DE02ACF411EEABB16A3DDF33BD12 /* NimbleSnapshotsConfiguration.swift */; };
@@ -306,6 +307,7 @@
 		1C62F8140C785BAA25537A3CCB5D7A94 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		1EF0769E4787A465010CD5186479CAE7 /* Stringers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stringers.swift; path = Sources/Nimble/Utils/Stringers.swift; sourceTree = "<group>"; };
 		1F8425AABD79A4829BFA35C91F7F96E0 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		205A69151EFD2BE8004C62A7 /* UNDRegexTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNDRegexTool.swift; sourceTree = "<group>"; };
 		209370541EF6890200572956 /* UNDUIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNDUIViewControllerExtension.swift; sourceTree = "<group>"; };
 		21F01030FFC62D5C75B706A050E32474 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		2259ED58E32F2802CFD9FE49A04AF2B2 /* Nimble-Snapshots-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-Snapshots-umbrella.h"; sourceTree = "<group>"; };
@@ -673,6 +675,14 @@
 			path = "../Target Support Files/Quick";
 			sourceTree = "<group>";
 		};
+		205A69141EFD2BBC004C62A7 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				205A69151EFD2BE8004C62A7 /* UNDRegexTool.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		225A01DE125A4690A6DFEDC7E42265A6 /* Nimble-Snapshots */ = {
 			isa = PBXGroup;
 			children = (
@@ -963,6 +973,7 @@
 			children = (
 				4DA023C4225ECEB907E008ED27E69137 /* UNDanielUtilsTool.swift */,
 				D19C6DF2A5206B7AB6CA6DB839697E9C /* UNDNetWorkAPITool.swift */,
+				205A69141EFD2BBC004C62A7 /* Tools */,
 				26C7B66AA650FB50A460C8374AF76F7C /* Base UI Elements */,
 				39429C33FA7B3839F45D052365E8492D /* Useful Views */,
 			);
@@ -1549,6 +1560,7 @@
 				2B2867CA0859301592E336188A9F27D8 /* UNDBaseTextField.swift in Sources */,
 				AC5F09A00DBE4B4A4E280E1CF7A1316D /* UNDDDLSampleTableViewCell.swift in Sources */,
 				5E3678789BE20F267619707348A866B2 /* UNDDDLSampleTableViewCell.xib in Sources */,
+				205A69161EFD2BE8004C62A7 /* UNDRegexTool.swift in Sources */,
 				812FCD11781164D01B62977743A92BF3 /* UNDDropDownListTableViewController.swift in Sources */,
 				5B262E39207B63B6857CEA8C52739DFA /* UNDNetWorkAPITool.swift in Sources */,
 				997371ACF96923F5A453CB90B8A11857 /* UNDTextFieldDropdownList.swift in Sources */,

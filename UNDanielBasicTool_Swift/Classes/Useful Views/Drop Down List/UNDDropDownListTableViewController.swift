@@ -21,6 +21,14 @@ open class UNDDropDownListTableViewController: UITableViewController {
     
     /// Mark : - Interfaces
     public weak var delegate : UNDDropDownListDelegate?
+    public var isMultipleSelectable : Bool {
+        get{
+            return self.tableView.allowsMultipleSelection
+        }
+        set(newValue){
+            self.tableView.allowsMultipleSelection = newValue
+        }
+    }
     
     /// Set this property tell us how many cells you what to show up in the Drop Down List each time
     public var numberOfDisplayingCells : Int{
@@ -74,7 +82,8 @@ open class UNDDropDownListTableViewController: UITableViewController {
     
     /// MARK : Read Only Property
     open var dropdownListHeight : CGFloat{
-        return self.usingCellHeight * CGFloat.init(self.numberOfDisplayingCells)
+        
+        return self.usingCellHeight * CGFloat.init(min(self.numberOfDisplayingCells, getSupportTotalCellRows()))
     }
     
     open var dropdownListOriginPoint : CGPoint {
@@ -168,6 +177,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.view.backgroundColor = UIColor.clear
+        self.tableView.backgroundView = UIView()
     }
     
     override open func viewWillAppear(_ animated: Bool) {
@@ -188,12 +198,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
 
     override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if let unwrapDelegate = self.delegate {
-            if unwrapDelegate.responds(to: Selector(("numberOfCellsInDropdownList:"))) {
-                return unwrapDelegate.numberOfCellsInDropdownList(self)
-            }
-        }
-        return 0
+        return getSupportTotalCellRows()
     }
 
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -234,6 +239,16 @@ open class UNDDropDownListTableViewController: UITableViewController {
         } else {
             self.tableView.separatorStyle = .none
         }
+    }
+    
+    func getSupportTotalCellRows() -> Int {
+        var returnInt : Int = 0
+        if let unwrapDelegate = self.delegate {
+            if unwrapDelegate.responds(to: Selector(("numberOfCellsInDropdownList:"))) {
+                returnInt = unwrapDelegate.numberOfCellsInDropdownList(self)
+            }
+        }
+        return returnInt
     }
 
 }

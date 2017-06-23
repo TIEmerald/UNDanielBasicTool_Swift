@@ -35,6 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Drop Down List Related
         usingDropDownList.delegate = self
+        usingDropDownList.isMultipleSelectable = true
         self.view.addSubview(usingDropDownList.view)
         usingDropDownList.view.alpha = 0
     }
