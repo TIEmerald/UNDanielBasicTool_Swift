@@ -202,6 +202,10 @@ open class UNDDropDownListTableViewController: UITableViewController {
         return getSupportTotalCellRows()
     }
 
+    override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.usingCellHeight
+    }
+    
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : UITableViewCell = UNDDDLSampleTableViewCell()
         if let unwrapedCellIdentifier = self.usingCellIdentifier {
