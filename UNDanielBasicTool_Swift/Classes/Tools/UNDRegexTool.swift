@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UNDRegexTool: NSObject {
+public class UNDRegexTool: NSObject {
     
     /// MARK : - Constants
     //// MARK : Pattern
