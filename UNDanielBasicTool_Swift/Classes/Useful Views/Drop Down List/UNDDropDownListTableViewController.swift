@@ -21,6 +21,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
     
     /// Mark : - Interfaces
     public weak var delegate : UNDDropDownListDelegate?
+    public var identifierTag : Int?
     public var isMultipleSelectable : Bool {
         get{
             return self.tableView.allowsMultipleSelection
