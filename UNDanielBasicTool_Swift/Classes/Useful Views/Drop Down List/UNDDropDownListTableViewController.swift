@@ -21,6 +21,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
     
     /// Mark : - Interfaces
     public weak var delegate : UNDDropDownListDelegate?
+    public var identifierTag : Int?
     public var isMultipleSelectable : Bool {
         get{
             return self.tableView.allowsMultipleSelection
@@ -201,6 +202,10 @@ open class UNDDropDownListTableViewController: UITableViewController {
         return getSupportTotalCellRows()
     }
 
+    override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.usingCellHeight
+    }
+    
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : UITableViewCell = UNDDDLSampleTableViewCell()
         if let unwrapedCellIdentifier = self.usingCellIdentifier {
