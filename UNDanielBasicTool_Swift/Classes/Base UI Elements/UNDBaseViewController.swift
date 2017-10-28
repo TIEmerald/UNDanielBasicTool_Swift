@@ -8,8 +8,7 @@
 
 import UIKit
 
-extension UIViewController {
-    
+public class UNDBaseViewController : UIViewController {     
     
     /// MARK : - Override Methods
     ////  Override this method if your View Controller is inside a story board

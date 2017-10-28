@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class UNDDDLSampleTableViewCell: UITableViewCell {
+public class UNDDDLSampleTableViewCell: UNDBaseTableViewCell {
     
     
     /// MARK : - IBOutlets
@@ -30,7 +30,7 @@ public class UNDDDLSampleTableViewCell: UITableViewCell {
     
     // Set Up Related
     override public func setupCell(basedOnModelDictionary modelDictionary : Dictionary<String, Any>){
-        let labelString = modelDictionary[UITableViewCell.UITableViewCell_BaseModle_Key] as! String
+        let labelString = modelDictionary[UNDDDLSampleTableViewCell.UITableViewCell_BaseModle_Key] as! String
         self.textLabel?.text = labelString
     }
     

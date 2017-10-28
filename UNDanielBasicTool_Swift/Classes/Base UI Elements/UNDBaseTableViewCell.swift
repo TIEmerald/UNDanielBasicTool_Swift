@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UITableViewCell {
+public class UNDBaseTableViewCell : UITableViewCell {
     
     /// Mark - Constant
     public static let UITableViewCell_BaseModle_Key = "UITableViewCellBaseModleKey"

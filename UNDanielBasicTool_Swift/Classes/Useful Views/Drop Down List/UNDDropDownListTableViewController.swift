@@ -110,14 +110,14 @@ open class UNDDropDownListTableViewController: UITableViewController {
     private var _originPoint : CGPoint = CGPoint(x: 0, y: 0)
     
     /// MARK : - Public Methods
-    public func setupWithTarget(_ target : UNDDropDownListDelegate, showUpView view: UIView, andCell cell : UITableViewCell){
+    public func setupWithTarget(_ target : UNDDropDownListDelegate, showUpView view: UIView, andCell cell : UNDBaseTableViewCell){
         self.registerCell(cell)
         view.addSubview(self.view)
         self.view.alpha = 0
         self.delegate = target
     }
     
-    public func registerCell(_ cell: UITableViewCell){
+    public func registerCell(_ cell: UNDBaseTableViewCell){
         type(of: cell).registerSelf(intoTableView:self.tableView)
         self.usingCellHeight = type(of: cell).cellHeight
         self.usingCellIdentifier = type(of: cell).cellIdentifierName
@@ -207,10 +207,10 @@ open class UNDDropDownListTableViewController: UITableViewController {
     }
     
     override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : UITableViewCell = UNDDDLSampleTableViewCell()
+        var cell : UNDBaseTableViewCell = UNDDDLSampleTableViewCell()
         if let unwrapedCellIdentifier = self.usingCellIdentifier {
             cell = tableView.dequeueReusableCell(withIdentifier: unwrapedCellIdentifier,
-                                                 for: indexPath)
+                                                 for: indexPath) as! UNDBaseTableViewCell
         }
         
         if let unwrapDelegate = self.delegate {
@@ -220,7 +220,7 @@ open class UNDDropDownListTableViewController: UITableViewController {
                                                     dataAtIndexPath: indexPath)
             }
             if let unwrapedModel = model {
-                cell.setupCell(basedOnModelDictionary: [UITableViewCell.UITableViewCell_BaseModle_Key : unwrapedModel])
+                cell.setupCell(basedOnModelDictionary: [UNDBaseTableViewCell.UITableViewCell_BaseModle_Key : unwrapedModel])
             }
             
         }
