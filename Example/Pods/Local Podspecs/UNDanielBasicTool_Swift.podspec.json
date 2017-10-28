@@ -1,6 +1,6 @@
 {
   "name": "UNDanielBasicTool_Swift",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "summary": "UNDanielBasicTool is a useful Tool contains a lot of functions.",
   "description": "This is a Basic Tool I used for different Swift App Developing.",
   "homepage": "https://github.com/TIEmerald/UNDanielBasicTool_Swift",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/TIEmerald/UNDanielBasicTool_Swift.git",
-    "tag": "0.1.2"
+    "tag": "0.1.4"
   },
   "platforms": {
     "ios": "8.0"
