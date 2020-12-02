@@ -88,8 +88,8 @@ extension UIViewController {
         if viewController.preferredContentSize != CGSize.zero {
             config.preferredSize = viewController.preferredContentSize
         } else {
-            config.preferredSize = CGSize(width: self.view.bounds.size.width
-                                          , height: self.view.bounds.size.height / 2) // By Default the size is half height of presenting view controller
+            config.preferredSize = CGSize(width: UIScreen.main.bounds.size.width
+                                          , height: UIScreen.main.bounds.size.height / 2) // By Default the size is half height of main screen
         }
         self.relatedConfig = config
         viewController.modalPresentationStyle = .custom
