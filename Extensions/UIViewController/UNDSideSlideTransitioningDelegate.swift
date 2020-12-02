@@ -76,8 +76,6 @@ extension UNDSideSlideTransitioningConfigModel: UIViewControllerTransitioningDel
 
 extension UIViewController {
     
-    private var slideDuration: TimeInterval { return 0.4 }
-    
     private static let relatedConfigAssociation = ObjectAssociation<UNDSideSlideTransitioningConfigModel>()
     
     var relatedConfig: UNDSideSlideTransitioningConfigModel! {
