@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UNDSideSlideTransitioningConfigModel {
+class UNDSideSlideTransitioningConfigModel: NSObject {
     
     enum MaskEffect {
         case maskDark
@@ -19,6 +19,8 @@ class UNDSideSlideTransitioningConfigModel {
         case center
     }
     
+    var presentDuration: TimeInterval = 0.4
+    var dismissDuration: TimeInterval = 0.4
     var maskEffect: MaskEffect
     var presentPosition: PresentPosition
     var shouldDismissWhileClickBackground: Bool
@@ -52,8 +54,27 @@ class UNDSideSlideTransitioningConfigModel {
     }
 }
 
+extension UNDSideSlideTransitioningConfigModel: UIViewControllerTransitioningDelegate {
+    
+    // Mark: - Delegates
+    // Mark: - UIViewControllerTransitioningDelegate
+    internal func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return UNDSideSlidePresentTransitionAnimator(timeInterval: self.presentDuration, and: self)
+    }
+    
+    internal func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return UNDSideSlideDismissTransitionAnimator(timeInterval: self.dismissDuration, and: self)
+    }
+    
+    internal func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return UNDSideSlidePresentationController(presentedViewController: presented
+                                                  , presentingViewController: presenting
+                                                  , and: self)
+    }
+}
 
-extension UIViewController: UIViewControllerTransitioningDelegate {
+
+extension UIViewController {
     
     private var slideDuration: TimeInterval { return 0.4 }
     
@@ -75,34 +96,18 @@ extension UIViewController: UIViewControllerTransitioningDelegate {
         self.relatedConfig = config
         viewController.modalPresentationStyle = .custom
         viewController.modalPresentationCapturesStatusBarAppearance = true
-        viewController.transitioningDelegate = self
+        viewController.transitioningDelegate = self.relatedConfig
         self.present(viewController, animated: true, completion: completion)
-    }
-    
-    // Mark: - Delegates
-    // Mark: - UIViewControllerTransitioningDelegate
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return UNDSideSlidePresentTransitionAnimator(timeInterval: self.slideDuration, and: self.relatedConfig)
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return UNDSideSlideDismissTransitionAnimator(timeInterval: self.slideDuration, and: self.relatedConfig)
-    }
-    
-    public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return UNDSideSlidePresentationController(presentedViewController: presented
-                                                  , presentingViewController: presenting
-                                                  , and: self.relatedConfig)
     }
 }
 
 fileprivate class UNDSideSlideBaseTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     var timeInterval: TimeInterval
-    var config: UNDSideSlideTransitioningConfigModel?
+    var config: UNDSideSlideTransitioningConfigModel
     
     // Mark: - Init
-    init(timeInterval: TimeInterval, and config: UNDSideSlideTransitioningConfigModel?) {
+    init(timeInterval: TimeInterval, and config: UNDSideSlideTransitioningConfigModel) {
         self.timeInterval = timeInterval
         self.config = config
     }
@@ -126,13 +131,8 @@ fileprivate class UNDSideSlidePresentTransitionAnimator: UNDSideSlideBaseTransit
             return
         }
         
-        var presentingOrigin = CGPoint(x: 0, y: 0)
-        var preferredSize = transitionContext.containerView.bounds.size
-        
-        if let unWrapedConfigure = self.config {
-            presentingOrigin = unWrapedConfigure.preferredOriginPoint(from: transitionContext.containerView)
-            preferredSize = unWrapedConfigure.preferredSize
-        }
+        let presentingOrigin = self.config.preferredOriginPoint(from: transitionContext.containerView)
+        let preferredSize = self.config.preferredSize
         
         var originalToViewFrame: CGRect {
             return CGRect(origin: CGPoint(x: presentingOrigin.x
@@ -180,7 +180,7 @@ fileprivate class UNDSideSlideDismissTransitionAnimator: UNDSideSlideBaseTransit
 
 fileprivate class UNDSideSlidePresentationController: UIPresentationController {
     
-    var configureModel: UNDSideSlideTransitioningConfigModel?
+    var configureModel: UNDSideSlideTransitioningConfigModel
     var dimmingView: UIView!
     var panGestureRecognizer: UIPanGestureRecognizer?
     var dismissTapGestureRecognizer: UITapGestureRecognizer?
@@ -188,19 +188,17 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
     private var shouldComplete = false
     
     // Mark: - Init
-    init(presentedViewController: UIViewController, presentingViewController: UIViewController?, and configureModel: UNDSideSlideTransitioningConfigModel?) {
+    init(presentedViewController: UIViewController, presentingViewController: UIViewController?, and configureModel: UNDSideSlideTransitioningConfigModel) {
         self.configureModel = configureModel
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
-        if let unWrappedConfigureModel = self.configureModel {
-            self.dimmingView = self.setUpDimmingView(with: unWrappedConfigureModel.maskEffect)
-            if unWrappedConfigureModel.couldDragPresentedView {
-                let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.onDrag(_:)))
-                presentedViewController.view.addGestureRecognizer(panGestureRecognizer)
-            }
-            if unWrappedConfigureModel.shouldDismissWhileClickBackground {
-                let dismissTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onTapBackground(_:)))
-                self.dimmingView.addGestureRecognizer(dismissTapGestureRecognizer)
-            }
+        self.dimmingView = self.setUpDimmingView(with: self.configureModel.maskEffect)
+        if self.configureModel.couldDragPresentedView {
+            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.onDrag(_:)))
+            presentedViewController.view.addGestureRecognizer(panGestureRecognizer)
+        }
+        if self.configureModel.shouldDismissWhileClickBackground {
+            let dismissTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onTapBackground(_:)))
+            self.dimmingView.addGestureRecognizer(dismissTapGestureRecognizer)
         }
     }
     
@@ -234,12 +232,8 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
     // Mark: - UIPresentationController
     override var frameOfPresentedViewInContainerView: CGRect {
         if let unWrappedContainerView = self.containerView {
-            if let unWrappedConfigureModel = self.configureModel {
-                return CGRect(origin: unWrappedConfigureModel.preferredOriginPoint(from: unWrappedContainerView)
-                              , size: unWrappedConfigureModel.preferredSize)
-            } else {
-                return unWrappedContainerView.bounds
-            }
+            return CGRect(origin: self.configureModel.preferredOriginPoint(from: unWrappedContainerView)
+                          , size: self.configureModel.preferredSize)
         } else {
             return CGRect.zero
         }
@@ -254,8 +248,7 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
         self.dimmingView.addSubview(self.presentedViewController.view)
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [unowned self] (_) in
             self.dimmingView.alpha = 1
-            if let unWrappedConfigureModel = self.configureModel,
-               unWrappedConfigureModel.shouldShrinkPresentingViewController {
+            if self.configureModel.shouldShrinkPresentingViewController {
                 self.presentingViewController.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }
         }, completion: nil)
@@ -281,8 +274,7 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
         switch gestureRecognizer.state {
         case .began: break
         case .changed:
-            if let unWrappedConfigureModel = self.configureModel,
-               unWrappedConfigureModel.couldDragInUpDirection || translation.y > 0 {
+            if self.configureModel.couldDragInUpDirection || translation.y > 0 {
                 self.presentedView?.transform = CGAffineTransform(translationX: 0, y: translation.y)
             }
             if let unWrappedContainerView = self.containerView {
