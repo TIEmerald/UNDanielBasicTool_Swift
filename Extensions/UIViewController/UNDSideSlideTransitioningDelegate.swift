@@ -99,10 +99,10 @@ extension UIViewController: UIViewControllerTransitioningDelegate {
 fileprivate class UNDSideSlideBaseTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     var timeInterval: TimeInterval
-    var config: UNDSideSlideTransitioningConfigModel
+    var config: UNDSideSlideTransitioningConfigModel?
     
     // Mark: - Init
-    init(timeInterval: TimeInterval, and config: UNDSideSlideTransitioningConfigModel) {
+    init(timeInterval: TimeInterval, and config: UNDSideSlideTransitioningConfigModel?) {
         self.timeInterval = timeInterval
         self.config = config
     }
@@ -126,17 +126,23 @@ fileprivate class UNDSideSlidePresentTransitionAnimator: UNDSideSlideBaseTransit
             return
         }
         
-        let presentingOrigin = self.config.preferredOriginPoint(from: transitionContext.containerView)
+        var presentingOrigin = CGPoint(x: 0, y: 0)
+        var preferredSize = transitionContext.containerView.bounds.size
+        
+        if let unWrapedConfigure = self.config {
+            presentingOrigin = unWrapedConfigure.preferredOriginPoint(from: transitionContext.containerView)
+            preferredSize = unWrapedConfigure.preferredSize
+        }
         
         var originalToViewFrame: CGRect {
             return CGRect(origin: CGPoint(x: presentingOrigin.x
                                           , y: transitionContext.containerView.frame.size.height)
-                          , size: self.config.preferredSize)
+                          , size: preferredSize)
         }
         
         var presentingToViewFrame: CGRect {
             return CGRect(origin: presentingOrigin
-                          , size: self.config.preferredSize)
+                          , size: preferredSize)
         }
         
         transitionContext.containerView.addSubview(toView)
@@ -174,7 +180,7 @@ fileprivate class UNDSideSlideDismissTransitionAnimator: UNDSideSlideBaseTransit
 
 fileprivate class UNDSideSlidePresentationController: UIPresentationController {
     
-    var configureModel: UNDSideSlideTransitioningConfigModel
+    var configureModel: UNDSideSlideTransitioningConfigModel?
     var dimmingView: UIView!
     var panGestureRecognizer: UIPanGestureRecognizer?
     var dismissTapGestureRecognizer: UITapGestureRecognizer?
@@ -182,17 +188,19 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
     private var shouldComplete = false
     
     // Mark: - Init
-    init(presentedViewController: UIViewController, presentingViewController: UIViewController?, and configureModel: UNDSideSlideTransitioningConfigModel) {
+    init(presentedViewController: UIViewController, presentingViewController: UIViewController?, and configureModel: UNDSideSlideTransitioningConfigModel?) {
         self.configureModel = configureModel
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
-        self.dimmingView = self.setUpDimmingView(with: self.configureModel.maskEffect)
-        if self.configureModel.couldDragPresentedView {
-            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.onDrag(_:)))
-            presentedViewController.view.addGestureRecognizer(panGestureRecognizer)
-        }
-        if self.configureModel.shouldDismissWhileClickBackground {
-            let dismissTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onTapBackground(_:)))
-            self.dimmingView.addGestureRecognizer(dismissTapGestureRecognizer)
+        if let unWrappedConfigureModel = self.configureModel {
+            self.dimmingView = self.setUpDimmingView(with: unWrappedConfigureModel.maskEffect)
+            if unWrappedConfigureModel.couldDragPresentedView {
+                let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.onDrag(_:)))
+                presentedViewController.view.addGestureRecognizer(panGestureRecognizer)
+            }
+            if unWrappedConfigureModel.shouldDismissWhileClickBackground {
+                let dismissTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onTapBackground(_:)))
+                self.dimmingView.addGestureRecognizer(dismissTapGestureRecognizer)
+            }
         }
     }
     
@@ -226,8 +234,12 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
     // Mark: - UIPresentationController
     override var frameOfPresentedViewInContainerView: CGRect {
         if let unWrappedContainerView = self.containerView {
-            return CGRect(origin: self.configureModel.preferredOriginPoint(from: unWrappedContainerView)
-                          , size: self.configureModel.preferredSize)
+            if let unWrappedConfigureModel = self.configureModel {
+                return CGRect(origin: unWrappedConfigureModel.preferredOriginPoint(from: unWrappedContainerView)
+                              , size: unWrappedConfigureModel.preferredSize)
+            } else {
+                return unWrappedContainerView.bounds
+            }
         } else {
             return CGRect.zero
         }
@@ -242,7 +254,8 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
         self.dimmingView.addSubview(self.presentedViewController.view)
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [unowned self] (_) in
             self.dimmingView.alpha = 1
-            if self.configureModel.shouldShrinkPresentingViewController {
+            if let unWrappedConfigureModel = self.configureModel,
+               unWrappedConfigureModel.shouldShrinkPresentingViewController {
                 self.presentingViewController.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }
         }, completion: nil)
@@ -268,7 +281,8 @@ fileprivate class UNDSideSlidePresentationController: UIPresentationController {
         switch gestureRecognizer.state {
         case .began: break
         case .changed:
-            if self.configureModel.couldDragInUpDirection || translation.y > 0 {
+            if let unWrappedConfigureModel = self.configureModel,
+               unWrappedConfigureModel.couldDragInUpDirection || translation.y > 0 {
                 self.presentedView?.transform = CGAffineTransform(translationX: 0, y: translation.y)
             }
             if let unWrappedContainerView = self.containerView {
